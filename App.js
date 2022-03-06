@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Suspense } from 'react';
+import { ActivityIndicator } from 'react-native';
+import { Provider as StoreProvider } from 'react-redux';
+import AppStore from './src/store/Store';
+import Toast from 'react-native-toast-message';
+import RootStack from './src/stacks/RootStack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => {
+	return (
+		<StoreProvider store={AppStore}>
+			<Suspense
+				fallback={
+					<ActivityIndicator
+						style={{
+							position: 'absolute',
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0,
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+						size="large"
+					/>
+				}
+			>
+				<RootStack />
+				<Toast />
+			</Suspense>
+		</StoreProvider>
+	);
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
