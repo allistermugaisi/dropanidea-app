@@ -29,15 +29,8 @@ const Profile = () => {
 			}}
 		>
 			<View style={{ backgroundColor: 'white', padding: 20 }}>
-				<Text>My Idea</Text>
+				<Text>Welcome to Dropanidea</Text>
 			</View>
-			<TouchableOpacity onPress={signOut} style={style.button}>
-				{buttonLoading ? (
-					<ActivityIndicator color="#fff" size="small" />
-				) : (
-					<Text style={{ color: '#fff', fontSize: 18 }}>Sign out</Text>
-				)}
-			</TouchableOpacity>
 		</View>
 	);
 };

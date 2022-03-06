@@ -3,10 +3,11 @@ import Toast from 'react-native-toast-message';
 import { save, getValueFor } from '../../utils/secureStore';
 import {
 	AUTH_USER,
-	USER_LOADING,
-	REGISTER_SUCCESS,
+	GET_USERS,
 	LOGIN_SUCCESS,
 	LOGOUT_SUCCESS,
+	REGISTER_SUCCESS,
+	RESET_PASSWORD_SUCCESS,
 } from './types';
 import {
 	returnErrors,
@@ -15,7 +16,7 @@ import {
 	authError,
 } from './error-actions';
 
-const USERS_URL = 'https://api-v1.lufumart.com/api/v1/auth';
+const USERS_AUTH = 'https://zinniaglobalconsultancy.com/api/v1/auth';
 
 // Setup config headers and token
 export const tokenConfig = async () => {
@@ -42,13 +43,9 @@ export const auth = () => async (dispatch) => {
 	// console.log(token);
 
 	try {
-		const response = await axios.get(`${USERS_URL}/profile`, token);
+		const response = await axios.get(`${USERS_AUTH}/profile`, token);
 		const data = await response.data;
-		console.log(data);
-
-		await dispatch({
-			type: USER_LOADING,
-		});
+		// console.log(data);
 
 		await dispatch({
 			type: AUTH_USER,
@@ -64,11 +61,37 @@ export const auth = () => async (dispatch) => {
 	}
 };
 
+// Get users
+export const getUsers = () => async (dispatch) => {
+	const token = tokenConfig();
+	try {
+		const response = await axios.get(`${USERS_AUTH}/users`, token);
+		const data = await response.data;
+
+		await dispatch({
+			type: GET_USERS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch(
+			returnErrors(error.response.data, error.response.status, 'GET_USERS_FAIL')
+		);
+		dispatch(usersError());
+	}
+};
+
 // Register User
 export const registerUser = (payload) => async (dispatch) => {
-	const { name, email, phone, gender, password, password_confirmation } =
-		payload;
-	// console.log(payload);
+	const {
+		username,
+		name,
+		company_name,
+		email,
+		gender,
+		role,
+		password,
+		password_confirmation,
+	} = payload;
 
 	try {
 		// Headers
@@ -80,34 +103,32 @@ export const registerUser = (payload) => async (dispatch) => {
 
 		// Request body
 		const body = JSON.stringify({
+			username,
 			name,
+			company_name,
 			email,
-			phone,
 			gender,
+			role,
 			password,
 			password_confirmation,
 		});
-		console.log(body);
 
-		const response = await axios.post(`${USERS_URL}/signup`, body, config);
-
+		const response = await axios.post(`${USERS_AUTH}/signup`, body, config);
 		const data = await response.data;
-		await save('userToken', data.token);
 
-		await dispatch({
-			type: USER_LOADING,
-		});
-
-		await dispatch({
-			type: REGISTER_SUCCESS,
-			payload: data,
-		});
-		dispatch(auth());
-		Toast.show({
-			type: 'success',
-			text1: 'Account created successfully!',
-			text2: `We're glad to have you on board`,
-		});
+		if (data) {
+			await dispatch({
+				type: REGISTER_SUCCESS,
+				payload: data,
+			});
+			dispatch(auth());
+			Toast.show({
+				type: 'success',
+				text1: 'Account created successfully.',
+				text2: `Kindly await your Psychometric Test.`,
+			});
+		}
+		dispatch(clearErrors());
 	} catch (error) {
 		dispatch(
 			returnErrors(error.response.data, error.response.status, 'REGISTER_FAIL')
@@ -119,7 +140,6 @@ export const registerUser = (payload) => async (dispatch) => {
 // Login User
 export const loginUser = (payload) => async (dispatch) => {
 	const { email, password } = payload;
-	// console.log(payload);
 
 	try {
 		// Headers
@@ -132,25 +152,27 @@ export const loginUser = (payload) => async (dispatch) => {
 		// Request body
 		const body = JSON.stringify({ email, password });
 
-		const response = await axios.post(`${USERS_URL}/signin`, body, config);
-		// console.log(response.data);
+		const response = await axios.post(`${USERS_AUTH}/signin`, body, config);
+
 		const data = await response.data;
-		await save('userToken', data.token);
+		// console.log(data);
 
-		await dispatch({
-			type: USER_LOADING,
-		});
+		if (data) {
+			await dispatch({
+				type: LOGIN_SUCCESS,
+				payload: data,
+			});
 
-		await dispatch({
-			type: LOGIN_SUCCESS,
-			payload: data,
-		});
-		dispatch(auth());
-		Toast.show({
-			type: 'success',
-			text1: `You're now logged in successfully!`,
-		});
+			await save('userToken', data.token);
+			dispatch(auth());
+			Toast.show({
+				type: 'success',
+				text1: `You're now logged in successfully!`,
+			});
+		}
+		dispatch(clearErrors());
 	} catch (error) {
+		// console.log(error);
 		dispatch(
 			returnErrors(error.response.data, error.response.status, 'LOGIN_FAIL')
 		);

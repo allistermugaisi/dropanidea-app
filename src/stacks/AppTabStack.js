@@ -16,13 +16,19 @@ import {
 } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import {
+	AntDesign,
+	FontAwesome,
+	Ionicons,
+	Octicons,
+	Feather,
+} from '@expo/vector-icons';
 import ActionSheet from 'react-native-actions-sheet';
 
 import { Create } from '../screens/app/global';
 import {
 	MyIdeaStackScreen,
-	RecentStackScreen,
+	FeedStackScreen,
 	IdeasStackScreen,
 	SettingsStackScreen,
 } from './AppScreenStack';
@@ -32,7 +38,7 @@ const actionSheetRef = createRef();
 
 const { height } = Dimensions.get('screen');
 
-const sheet_height = height * 0.5;
+const sheet_height = height * 0.4;
 
 const AppTabStack = () => {
 	return (
@@ -40,14 +46,56 @@ const AppTabStack = () => {
 			<ActionSheet
 				bounceOnOpen
 				gestureEnabled
-				indicatorColor="#00ab55"
 				overlayColor="#000000"
 				defaultOverlayOpacity={0.5}
 				bounciness={10}
 				ref={actionSheetRef}
 			>
 				<View style={{ height: sheet_height, padding: '5%' }}>
-					<Text>Creeate New Idea</Text>
+					<View
+						style={{
+							flexDirection: 'row',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+						}}
+					>
+						<Text style={{ fontSize: 20 }}>Create</Text>
+						<TouchableOpacity
+							onPress={() => actionSheetRef.current?.setModalVisible()}
+						>
+							<AntDesign name="closecircle" size={24} color="black" />
+						</TouchableOpacity>
+					</View>
+					<TouchableOpacity
+						style={{
+							flexDirection: 'row',
+							alignItems: 'center',
+							paddingTop: 20,
+						}}
+					>
+						<Ionicons
+							style={{ paddingHorizontal: 10 }}
+							name="add-circle"
+							size={28}
+							color="#54A7E2"
+						/>
+						<Text style={{ fontSize: 18 }}>Create an Idea</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={{
+							flexDirection: 'row',
+							alignItems: 'center',
+							paddingTop: 40,
+						}}
+					>
+						<Octicons
+							style={{ paddingHorizontal: 10 }}
+							name="comment-discussion"
+							size={28}
+							color="#54A7E2"
+						/>
+						<Text style={{ fontSize: 18 }}>Discuss an Idea</Text>
+					</TouchableOpacity>
 				</View>
 			</ActionSheet>
 			<Tab.Navigator
@@ -75,18 +123,18 @@ const AppTabStack = () => {
 					options={{
 						tabBarIcon: ({ focused }) => (
 							<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-								<AntDesign
-									name="home"
-									size={22}
-									color={focused ? '#00ab55' : 'gray'}
+								<Ionicons
+									name="home-outline"
+									size={20}
+									color={focused ? '#54A7E2' : 'gray'}
 								/>
 								<Text
 									style={{
-										color: focused ? '#00ab55' : 'gray',
+										color: focused ? '#54A7E2' : 'gray',
 										fontSize: 10,
 									}}
 								>
-									My Idea
+									Home
 								</Text>
 							</View>
 						),
@@ -94,7 +142,7 @@ const AppTabStack = () => {
 				/>
 				<Tab.Screen
 					name="Recent"
-					component={RecentStackScreen}
+					component={FeedStackScreen}
 					options={{
 						tabBarIcon: ({ focused }) => (
 							<View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -109,7 +157,7 @@ const AppTabStack = () => {
 										fontSize: 10,
 									}}
 								>
-									Recent
+									Feed
 								</Text>
 							</View>
 						),
@@ -127,8 +175,13 @@ const AppTabStack = () => {
 					}}
 					options={{
 						tabBarIcon: ({ focused }) => (
-							<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-								<AntDesign name="pluscircle" size={24} color="#54A7E2" />
+							<View
+								style={{
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}
+							>
+								<AntDesign name="pluscircle" size={40} color="#54A7E2" />
 							</View>
 						),
 					}}
@@ -140,8 +193,8 @@ const AppTabStack = () => {
 					options={{
 						tabBarIcon: ({ focused }) => (
 							<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-								<FontAwesome5
-									name="user-circle"
+								<FontAwesome
+									name="commenting-o"
 									size={20}
 									color={focused ? '#54A7E2' : 'gray'}
 								/>
@@ -164,19 +217,8 @@ const AppTabStack = () => {
 					options={{
 						tabBarIcon: ({ focused }) => (
 							<View style={{ alignItems: 'center', justifyContent: 'center' }}>
-								{/* <Image
-									source={{
-										uri: 'https://raw.githubusercontent.com/arkhan13/coinbase-clone/master/assets/icons/1x/settings.png',
-									}}
-									resizeMode="contain"
-									style={{
-										width: 17,
-										height: 17,
-										tintColor: focused ? '#00ab55' : 'gray',
-									}}
-								/> */}
-								<FontAwesome5
-									name="user-circle"
+								<Feather
+									name="settings"
 									size={20}
 									color={focused ? '#54A7E2' : 'gray'}
 								/>
@@ -186,7 +228,7 @@ const AppTabStack = () => {
 										fontSize: 10,
 									}}
 								>
-									Profile
+									Settings
 								</Text>
 							</View>
 						),

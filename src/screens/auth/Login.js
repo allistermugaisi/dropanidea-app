@@ -65,7 +65,7 @@ const Login = () => {
 		<TextInputAvoidingView>
 			<Animated.View style={style.container}>
 				<LinearGradient
-					colors={['#00ab55']}
+					colors={['#fffff7']}
 					style={[styles.centerAlign, { height: height / 6 }]}
 				>
 					{/* <Image
@@ -87,7 +87,7 @@ const Login = () => {
 						<Text
 							style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}
 						>
-							SIGN IN
+							LOGIN
 						</Text>
 						<Controller
 							control={control}
@@ -102,7 +102,7 @@ const Login = () => {
 									value={value}
 									theme={{
 										colors: {
-											primary: '#f68b1e',
+											primary: '#54A7E2',
 											underlineColor: 'transparent',
 										},
 									}}
@@ -136,7 +136,7 @@ const Login = () => {
 									value={value}
 									theme={{
 										colors: {
-											primary: '#f68b1e',
+											primary: '#54A7E2',
 											underlineColor: 'transparent',
 										},
 									}}
@@ -170,7 +170,7 @@ const Login = () => {
 							{buttonLoading ? (
 								<ActivityIndicator color="#fff" size="small" />
 							) : (
-								<Text style={{ color: '#fff', fontSize: 18 }}>Sign in</Text>
+								<Text style={{ color: '#fff', fontSize: 18 }}>Login</Text>
 							)}
 						</TouchableOpacity>
 					</View>
@@ -192,7 +192,7 @@ const style = StyleSheet.create({
 		height: 60,
 		padding: 15,
 		marginVertical: 15,
-		backgroundColor: '#00ab55',
+		backgroundColor: '#54A7E2',
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,

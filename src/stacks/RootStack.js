@@ -29,7 +29,7 @@ const RootStack = () => {
 
 	return (
 		<NavigationContainer>
-			{!authUser ? <AppTabStack /> : <AuthScreenStack />}
+			{authUser ? <AppTabStack /> : <AuthScreenStack />}
 		</NavigationContainer>
 	);
 };

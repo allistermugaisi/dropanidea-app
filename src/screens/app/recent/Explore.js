@@ -1,7 +1,7 @@
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import React from 'react';
 
-const Recent = () => {
+const Explore = () => {
 	return (
 		<ScrollView style={{ backgroundColor: '#fffff7' }}>
 			<View
@@ -13,11 +13,11 @@ const Recent = () => {
 				}}
 			>
 				<View style={{ backgroundColor: 'white', padding: 20 }}>
-					<Text>You have no recent ideas</Text>
+					<Text>Explore more ideas</Text>
 				</View>
 			</View>
 		</ScrollView>
 	);
 };
 
-export default Recent;
+export default Explore;

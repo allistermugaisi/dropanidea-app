@@ -15,13 +15,13 @@ import {
 } from '@expo/vector-icons';
 
 import { MyIdea } from '../screens/app/myidea';
-import { Recent } from '../screens/app/recent';
+import { Feed } from '../screens/app/recent';
 import { Ideas } from '../screens/app/ideas';
 import { Profile } from '../screens/app/settings';
 import { Notifications } from '../screens/app/global';
 
 const MyIdeaStack = createStackNavigator();
-const RecentStack = createStackNavigator();
+const FeedStack = createStackNavigator();
 const IdeasStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
 
@@ -31,22 +31,28 @@ export const MyIdeaStackScreen = ({ navigation }) => (
 			name="MyIdeaScreen"
 			component={MyIdea}
 			options={{
-				title: 'MyIdea',
+				title: 'Home',
 				headerRight: () => (
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<TouchableOpacity
+							style={{ paddingHorizontal: 15 }}
 							onPress={() => navigation.navigate('Notifications')}
 						>
 							<SimpleLineIcons name="bell" size={20} color="black" />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Fontisto
-								name="more-v-a"
-								size={20}
-								color="black"
-								style={{ paddingHorizontal: 15 }}
-							/>
-						</TouchableOpacity>
+						<Badge
+							visible={true}
+							style={{
+								marginBottom: 25,
+								marginLeft: -20,
+								marginRight: 10,
+								color: '#fff',
+								backgroundColor: 'red',
+							}}
+							size={15}
+						>
+							36
+						</Badge>
 					</View>
 				),
 			}}
@@ -70,38 +76,49 @@ export const MyIdeaStackScreen = ({ navigation }) => (
 	</MyIdeaStack.Navigator>
 );
 
-export const RecentStackScreen = ({ navigation }) => (
-	<RecentStack.Navigator>
-		<RecentStack.Screen
-			name="RecentScreen"
-			component={Recent}
+export const FeedStackScreen = ({ navigation }) => (
+	<FeedStack.Navigator>
+		<FeedStack.Screen
+			name="FeedScreen"
+			component={Feed}
 			options={{
-				title: 'Recent',
+				title: 'Feed',
+				cardStyle: {
+					backgroundColor: '#fffff7',
+					opacity: 1,
+				},
 				headerRight: () => (
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<TouchableOpacity
-							onPress={() => navigation.navigate('Notifications')}
+							style={{ paddingHorizontal: 15 }}
+							onPress={() => navigation.navigate('FeedNotifications')}
 						>
 							<SimpleLineIcons name="bell" size={20} color="black" />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Fontisto
-								name="more-v-a"
-								size={20}
-								color="black"
-								style={{ paddingHorizontal: 15 }}
-							/>
-						</TouchableOpacity>
+						<Badge
+							visible={true}
+							style={{
+								marginBottom: 25,
+								marginLeft: -20,
+								marginRight: 10,
+								color: '#fff',
+								backgroundColor: 'red',
+							}}
+							size={15}
+						>
+							36
+						</Badge>
 					</View>
 				),
 			}}
 		/>
-		<RecentStack.Screen
-			name="Notifications"
+		<FeedStack.Screen
+			name="FeedNotifications"
 			component={Notifications}
 			options={{
+				title: 'Notifications',
 				headerLeft: () => (
-					<TouchableOpacity onPress={() => navigation.navigate('RecentScreen')}>
+					<TouchableOpacity onPress={() => navigation.navigate('FeedScreen')}>
 						<Ionicons
 							name="arrow-back"
 							size={24}
@@ -112,7 +129,7 @@ export const RecentStackScreen = ({ navigation }) => (
 				),
 			}}
 		/>
-	</RecentStack.Navigator>
+	</FeedStack.Navigator>
 );
 
 export const IdeasStackScreen = ({ navigation }) => (
@@ -125,35 +142,46 @@ export const IdeasStackScreen = ({ navigation }) => (
 				headerRight: () => (
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<TouchableOpacity
-							onPress={() => navigation.navigate('Notifications')}
+							style={{ paddingHorizontal: 15 }}
+							onPress={() => navigation.navigate('IdeasNotifications')}
 						>
 							<SimpleLineIcons name="bell" size={20} color="black" />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Fontisto
-								name="more-v-a"
-								size={20}
-								color="black"
-								style={{ paddingHorizontal: 15 }}
-							/>
-						</TouchableOpacity>
+						<Badge
+							visible={true}
+							style={{
+								marginBottom: 25,
+								marginLeft: -20,
+								marginRight: 10,
+								color: '#fff',
+								backgroundColor: 'red',
+							}}
+							size={15}
+						>
+							36
+						</Badge>
 					</View>
 				),
 			}}
 		/>
 		<IdeasStack.Screen
-			name="Notifications"
+			name="IdeasNotifications"
 			component={Notifications}
 			options={{
+				title: 'Notifications',
 				headerLeft: () => (
-					<TouchableOpacity onPress={() => navigation.navigate('IdeasScreen')}>
-						<Ionicons
-							name="arrow-back"
-							size={24}
-							color="black"
-							style={{ paddingHorizontal: 15 }}
-						/>
-					</TouchableOpacity>
+					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+						<TouchableOpacity
+							onPress={() => navigation.navigate('IdeasScreen')}
+						>
+							<Ionicons
+								name="arrow-back"
+								size={24}
+								color="black"
+								style={{ paddingHorizontal: 15 }}
+							/>
+						</TouchableOpacity>
+					</View>
 				),
 			}}
 		/>
@@ -170,26 +198,33 @@ export const SettingsStackScreen = ({ navigation }) => (
 				headerRight: () => (
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<TouchableOpacity
-							onPress={() => navigation.navigate('Notifications')}
+							style={{ paddingHorizontal: 15 }}
+							onPress={() => navigation.navigate('SettingsNotifications')}
 						>
 							<SimpleLineIcons name="bell" size={20} color="black" />
 						</TouchableOpacity>
-						<TouchableOpacity>
-							<Fontisto
-								name="more-v-a"
-								size={20}
-								color="black"
-								style={{ paddingHorizontal: 15 }}
-							/>
-						</TouchableOpacity>
+						<Badge
+							visible={true}
+							style={{
+								marginBottom: 25,
+								marginLeft: -20,
+								marginRight: 10,
+								color: '#fff',
+								backgroundColor: 'red',
+							}}
+							size={15}
+						>
+							36
+						</Badge>
 					</View>
 				),
 			}}
 		/>
 		<SettingsStack.Screen
-			name="Notifications"
+			name="SettingsNotifications"
 			component={Notifications}
 			options={{
+				title: 'Notifications',
 				headerLeft: () => (
 					<TouchableOpacity
 						onPress={() => navigation.navigate('SettingsScreen')}

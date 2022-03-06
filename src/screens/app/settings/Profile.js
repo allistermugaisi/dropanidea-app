@@ -1,62 +1,60 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import {
 	View,
 	Text,
-	TouchableOpacity,
-	ActivityIndicator,
 	StyleSheet,
+	Dimensions,
+	Image,
+	TouchableOpacity,
+	SafeAreaView,
+	ScrollView,
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import SettingsAccount from './SettingsAccount';
+import SettingsSecurity from './SettingsSecurity';
+import HelpCenter from './HelpCenter';
 
-import { logOut } from '../../../store/actions/auth-actions';
-
-const Profile = () => {
-	const dispatch = useDispatch();
-
-	const [buttonLoading, setButtonLoading] = useState(false);
-
-	const signOut = async () => {
-		await dispatch(logOut());
-	};
-
+const Settings = () => {
+	const currentUser = useSelector((state) => state.auth?.user?.current_user);
+	// console.log(currentUser);
 	return (
-		<View
-			style={{
-				flex: 1,
-				backgroundColor: 'transparent',
-				alignItems: 'center',
-				justifyContent: 'center',
-			}}
-		>
-			<View style={{ backgroundColor: 'white', padding: 20 }}>
-				<Text>Settings</Text>
-			</View>
-			<TouchableOpacity onPress={signOut} style={style.button}>
-				{buttonLoading ? (
-					<ActivityIndicator color="#fff" size="small" />
-				) : (
-					<Text style={{ color: '#fff', fontSize: 18 }}>Sign out</Text>
-				)}
-			</TouchableOpacity>
-		</View>
+		<SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+			<ScrollView style={{ flex: 1 }}>
+				<View style={{ paddingTop: 30, paddingHorizontal: 20 }}>
+					<View>
+						<Text
+							style={{
+								color: '#090c0d',
+								fontSize: 29,
+								fontWeight: 'bold',
+								paddingTop: 5,
+							}}
+						>
+							{currentUser?.name}
+						</Text>
+						<Text style={{ color: '#5d616f', fontSize: 14, fontWeight: '500' }}>
+							{currentUser?.email}
+						</Text>
+						<Text style={{ color: '#5d616f', fontSize: 14, fontWeight: '500' }}>
+							{currentUser?.role}
+						</Text>
+					</View>
+
+					{/* <View style={{ paddingTop: 10 }}>
+						<SettingsAccount />
+					</View> */}
+
+					<View style={{ paddingTop: 15 }}>
+						<SettingsSecurity />
+					</View>
+
+					<View style={{ paddingTop: 10 }}>
+						<HelpCenter />
+					</View>
+				</View>
+			</ScrollView>
+		</SafeAreaView>
 	);
 };
 
-export default Profile;
-
-const style = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fffff7',
-	},
-	button: {
-		width: '80%',
-		height: 60,
-		padding: 15,
-		marginVertical: 15,
-		backgroundColor: '#00ab55',
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 10,
-	},
-});
+export default Settings;

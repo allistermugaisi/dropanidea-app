@@ -69,8 +69,8 @@ const Signup = ({ navigation }) => {
 			<ScrollView>
 				<Animated.View style={style.container}>
 					<LinearGradient
-						colors={['#00ab55']}
-						style={[styles.centerAlign, { height: height / 4 }]}
+						colors={['#fffff7']}
+						style={[styles.centerAlign, { height: height / 7 }]}
 					>
 						{/* <Image
 						source={require('../../../assets/nikiai-logo.png')}
@@ -95,7 +95,7 @@ const Signup = ({ navigation }) => {
 									textAlign: 'center',
 								}}
 							>
-								SIGN UP
+								REGISTER
 							</Text>
 							<Controller
 								control={control}
@@ -108,7 +108,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#f68b1e',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -140,7 +140,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#f68b1e',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -175,7 +175,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#00ab55',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -209,7 +209,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#f68b1e',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -240,7 +240,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#f68b1e',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -278,7 +278,7 @@ const Signup = ({ navigation }) => {
 										value={value}
 										theme={{
 											colors: {
-												primary: '#00ab55',
+												primary: '#54A7E2',
 												underlineColor: 'transparent',
 											},
 										}}
@@ -314,7 +314,9 @@ const Signup = ({ navigation }) => {
 								{buttonLoading ? (
 									<ActivityIndicator color="#fff" size="small" />
 								) : (
-									<Text style={{ color: '#fff', fontSize: 18 }}>Sign up</Text>
+									<Text style={{ color: '#fff', fontSize: 18 }}>
+										Create an account
+									</Text>
 								)}
 							</TouchableOpacity>
 						</View>
@@ -337,7 +339,7 @@ const style = StyleSheet.create({
 		height: 60,
 		padding: 15,
 		marginVertical: 15,
-		backgroundColor: '#00ab55',
+		backgroundColor: '#54A7E2',
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,

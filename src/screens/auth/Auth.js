@@ -38,11 +38,11 @@ const Auth = () => {
 							<>
 								<Text
 									style={{
-										color: focused ? '#f68b1e' : 'gray',
+										color: focused ? '#54A7E2' : 'gray',
 										fontWeight: 'bold',
 									}}
 								>
-									Sign in
+									Login
 								</Text>
 							</>
 						),
@@ -56,11 +56,11 @@ const Auth = () => {
 							<>
 								<Text
 									style={{
-										color: focused ? '#f68b1e' : 'gray',
+										color: focused ? '#54A7E2' : 'gray',
 										fontWeight: 'bold',
 									}}
 								>
-									Sign up
+									Register
 								</Text>
 							</>
 						),
