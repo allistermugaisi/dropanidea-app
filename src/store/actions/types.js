@@ -23,3 +23,4 @@ export const DISCUSSION_LOADING = 'discussion_loading';
 export const GET_DISCUSSION = 'get_discussion';
 export const GET_DISCUSSIONS = 'get_discussions';
 export const DISCUSSION_ERROR = 'discussion_error';
+export const FAKE_LOGIN = 'fake_login';

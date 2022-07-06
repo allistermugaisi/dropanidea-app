@@ -3,6 +3,7 @@ import {
 	USER_LOADING,
 	AUTH_ERROR,
 	REGISTER_SUCCESS,
+	FAKE_LOGIN,
 	LOGIN_SUCCESS,
 	LOGIN_FAIL,
 	LOGOUT_SUCCESS,
@@ -19,6 +20,12 @@ export default function AuthReducer(state = initialState, action) {
 			return {
 				...state,
 				isLoading: true,
+			};
+		case FAKE_LOGIN:
+			return {
+				...state,
+				isLoading: false,
+				isAuthenticated: true,
 			};
 		case AUTH_USER:
 			return {

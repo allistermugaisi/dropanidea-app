@@ -14,14 +14,14 @@ const RootStack = () => {
 
 	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		setIsLoading(true);
-		const authUser = async () => {
-			await dispatch(auth());
-			setIsLoading(false);
-		};
-		authUser();
-	}, []);
+	// useEffect(() => {
+	// 	setIsLoading(true);
+	// 	const authUser = async () => {
+	// 		await dispatch(auth());
+	// 		setIsLoading(false);
+	// 	};
+	// 	authUser();
+	// }, []);
 
 	if (isLoading) {
 		return <ActivityIndicator size="large" style={styles.loading} />;
@@ -29,7 +29,7 @@ const RootStack = () => {
 
 	return (
 		<NavigationContainer>
-			{authUser ? <AppTabStack /> : <AuthScreenStack />}
+			{!authUser ? <AppTabStack /> : <AuthScreenStack />}
 		</NavigationContainer>
 	);
 };

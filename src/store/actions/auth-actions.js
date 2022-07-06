@@ -3,6 +3,7 @@ import Toast from 'react-native-toast-message';
 import { save, getValueFor } from '../../utils/secureStore';
 import {
 	AUTH_USER,
+	FAKE_LOGIN,
 	GET_USERS,
 	LOGIN_SUCCESS,
 	LOGOUT_SUCCESS,
@@ -192,4 +193,14 @@ export const logOut = () => async (dispatch) => {
 	dispatch({
 		type: LOGOUT_SUCCESS,
 	});
+};
+
+export const fakeLogin = () => async (dispatch) => {
+	try {
+		dispatch({
+			type: FAKE_LOGIN,
+		});
+	} catch (error) {
+		console.log(error);
+	}
 };

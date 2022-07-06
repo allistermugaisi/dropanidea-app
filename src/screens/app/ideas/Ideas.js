@@ -5,6 +5,7 @@ import {
 	Text,
 	TouchableOpacity,
 	ActivityIndicator,
+	Button,
 	ScrollView,
 	RefreshControl,
 	StyleSheet,
@@ -12,21 +13,21 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Badge } from 'react-native-paper';
 
-import { getAllIdeas } from '../../../store/actions/ideas-actions';
+// import { getAllIdeas } from '../../../store/actions/ideas-actions';
 
 const Ideas = () => {
 	const dispatch = useDispatch();
 	let getIdeas = useSelector((state) => state.idea);
 	const [refreshing, setRefreshing] = useState(false);
 
-	useEffect(() => {
-		dispatch(getAllIdeas());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getAllIdeas());
+	// }, []);
 
 	const onRefresh = async () => {
-		setRefreshing(true);
-		dispatch(getAllIdeas());
-		setRefreshing(false);
+		// setRefreshing(true);
+		// dispatch(getAllIdeas());
+		// setRefreshing(false);
 	};
 
 	return (

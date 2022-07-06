@@ -17,6 +17,7 @@ import {
 import { MyIdea } from '../screens/app/myidea';
 import { Feed } from '../screens/app/recent';
 import { Ideas } from '../screens/app/ideas';
+// import { ChatScreen } from '../screens/app/ideas/ChatScreen';
 import { Profile } from '../screens/app/settings';
 import { Notifications } from '../screens/app/global';
 
@@ -164,6 +165,36 @@ export const IdeasStackScreen = ({ navigation }) => (
 				),
 			}}
 		/>
+		{/* <IdeasStack.Screen
+			name="ChatScreen"
+			component={ChatScreen}
+			options={{
+				title: 'Chat',
+				headerRight: () => (
+					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+						<TouchableOpacity
+							style={{ paddingHorizontal: 15 }}
+							onPress={() => navigation.navigate('IdeasNotifications')}
+						>
+							<SimpleLineIcons name="bell" size={20} color="black" />
+						</TouchableOpacity>
+						<Badge
+							visible={true}
+							style={{
+								marginBottom: 25,
+								marginLeft: -20,
+								marginRight: 10,
+								color: '#fff',
+								backgroundColor: 'red',
+							}}
+							size={15}
+						>
+							36
+						</Badge>
+					</View>
+				),
+			}}
+		/> */}
 		<IdeasStack.Screen
 			name="IdeasNotifications"
 			component={Notifications}
